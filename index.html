@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Thumbnail Downloader | Download Thumbnails Instantly</title>
+  <meta name="description" content="Download YouTube video thumbnails in HD, Full HD, and 4K quality. One-click instant download.">
+  <meta name="keywords" content="YouTube Thumbnail Downloader, HD Thumbnail Download, YouTube Image Extractor">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    h1 { color: #ff0000; }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #ff0000;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+    .hidden { display: none; }
+    #thumbnailContainer img {
+      max-width: 100%;
+      margin: 10px 0;
+    }
+    .btn {
+      display: block;
+      margin: 10px auto;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .tutorial, .seo-content {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 15px;
+      background: white;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>YouTube Thumbnail Downloader</h1>
+    <p>Enter YouTube Video Link & Download Thumbnail in Different Qualities</p>
+    
+    <input type="text" id="videoUrl" placeholder="Paste YouTube Video URL here...">
+    <button onclick="fetchThumbnail()">Get Thumbnail</button>
+
+    <div id="thumbnailContainer" class="hidden">
+      <h2>Download in Different Qualities</h2>
+      <img id="thumbnailImage" src="" alt="YouTube Thumbnail">
+      
+      <div class="buttons">
+        <button onclick="downloadThumbnail('low')">Download Low Quality</button>
+        <button onclick="downloadThumbnail('medium')">Download Medium Quality</button>
+        <button onclick="downloadThumbnail('high')">Download HD Quality</button>
+        <button onclick="downloadThumbnail('maxres')">Download Full HD/4K</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tutorial Section -->
+  <div class="tutorial">
+    <h2>How to Download YouTube Thumbnails?</h2>
+    <p>1️⃣ Copy the YouTube video link.<br>
+       2️⃣ Paste it in the input box above.<br>
+       3️⃣ Click "Get Thumbnail".<br>
+       4️⃣ Choose a quality and click the corresponding download button. The thumbnail will be directly downloaded to your device.</p>
+  </div>
+
+  <!-- SEO Content Section -->
+  <div class="seo-content">
+    <h2>About YouTube Thumbnail Downloader</h2>
+    <p>
+      YouTube Thumbnail Downloader is a free tool that allows you to download video thumbnails from YouTube in various qualities including Low, Medium, HD, and Full HD/4K. 
+      Thumbnails are an important aspect of video presentation and can help in increasing views and engagement. Our tool makes it easy to obtain high-quality thumbnails instantly with just one click.
+    </p>
+    <!-- Additional SEO-friendly content up to 1000+ words should be added here for better ranking. -->
+  </div>
+
+  <script>
+    let thumbnails = {};
+
+    function fetchThumbnail() {
+      let videoUrl = document.getElementById("videoUrl").value;
+      let videoId = extractVideoID(videoUrl);
+
+      if (!videoId) {
+        alert("Invalid YouTube URL!");
+        return;
+      }
+
+      thumbnails = {
+        low: `https://img.youtube.com/vi/${videoId}/default.jpg`,
+        medium: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
+        high: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+        maxres: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+      };
+
+      document.getElementById("thumbnailImage").src = thumbnails.high;
+      document.getElementById("thumbnailContainer").classList.remove("hidden");
+    }
+
+    function extractVideoID(url) {
+      let regExp = /^.*(youtu.be\/|v\/|\/u\/\w\/|embed\/|watch\?v=|&v=|\/shorts\/)([^#&?]*).*/;
+      let match = url.match(regExp);
+      return (match && match[2].length === 11) ? match[2] : null;
+    }
+
+    // Updated download function using fetch and blob to force download
+    function downloadThumbnail(quality) {
+      let imageUrl = thumbnails[quality];
+      if (!imageUrl) {
+        alert("Thumbnail not available for the selected quality.");
+        return;
+      }
+      
+      fetch(imageUrl)
+        .then(response => response.blob())
+        .then(blob => {
+          let blobUrl = window.URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.style.display = "none";
+          a.href = blobUrl;
+          a.download = `${quality}_quality_thumbnail.jpg`;
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(blobUrl);
+          document.body.removeChild(a);
+        })
+        .catch(() => alert("Failed to download thumbnail."));
+    }
+  </script>
+</body>
+</html>
