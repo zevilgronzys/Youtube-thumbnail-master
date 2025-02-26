@@ -159,5 +159,32 @@
         .catch(() => alert("Failed to download thumbnail."));
     }
   </script>
+
+  <!-- Feedback Section -->
+<div class="feedback-section" style="text-align: center; margin-top: 50px;">
+    <p style="font-size: 18px; margin-bottom: 10px;">Is this tool helpful?</p>
+    <button class="thumbs-up" style="font-size: 30px; margin: 10px; padding: 10px 20px; cursor: pointer; border: none; background-color: #f0f0f0; border-radius: 5px;">👍</button>
+    <button class="thumbs-down" style="font-size: 30px; margin: 10px; padding: 10px 20px; cursor: pointer; border: none; background-color: #f0f0f0; border-radius: 5px;">👎</button>
+</div>
+
+<script>
+    // JavaScript for handling feedback
+    document.querySelector('.thumbs-up').addEventListener('click', function() {
+        alert('Thank you for your positive feedback!');
+        // Replace this with your backend call if needed
+        sendFeedback('positive');
+    });
+
+    document.querySelector('.thumbs-down').addEventListener('click', function() {
+        alert('Sorry for the inconvenience, we appreciate your feedback!');
+        // Replace this with your backend call if needed
+        sendFeedback('negative');
+    });
+
+    function sendFeedback(feedbackType) {
+        console.log('Feedback received: ' + feedbackType);
+        // You can replace this with an actual API call to save the feedback on your server
+    }
+</script>
 </body>
 </html>
