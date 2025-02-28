@@ -4,7 +4,6 @@
   <meta name="google-site-verification" content="ZgQi64DgaEgamBe2GnkaH_KMAFV_c3t9IcP7JaL83do" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <h1 class="red-bold-title">YTthumbs.com</h1>
   <title>YouTube Thumbnail Downloader | Download Thumbnails Instantly</title>
   <meta name="description" content="Download YouTube video thumbnails in HD, Full HD, and 4K quality. One-click instant download.">
   <meta name="keywords" content="YouTube Thumbnail Downloader, HD Thumbnail Download, YouTube Image Extractor">
@@ -17,70 +16,63 @@
       padding: 0;
     }
     .container {
-      max-width: 600px;
-      margin: 50px auto;
+      max-width: 90%;
+      margin: 30px auto;
       padding: 20px;
       background: white;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
       border-radius: 10px;
     }
-    h1 { color: #ff0000; }
+    h1 {
+      color: #ff0000;
+      font-size: 28px;
+    }
     input {
-      width: 90%;
-      padding: 10px;
+      width: 100%;
+      padding: 12px;
       margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 5px;
+      font-size: 16px;
     }
     button {
+      width: 100%;
       background-color: #D32F2F;
       color: white;
-      padding: 10px 20px;
+      padding: 12px;
       border: none;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 18px;
       border-radius: 5px;
+      margin-top: 10px;
     }
     .hidden { display: none; }
     #thumbnailContainer img {
       max-width: 100%;
       margin: 10px 0;
-    }
-    .btn {
-      display: block;
-      margin: 10px auto;
-      padding: 10px;
-      background-color: #007bff;
-      color: white;
-      text-decoration: none;
       border-radius: 5px;
     }
+    .buttons button {
+      width: 100%;
+      margin: 5px 0;
+    }
     .tutorial, .seo-content {
-      max-width: 600px;
+      max-width: 90%;
       margin: 20px auto;
       padding: 15px;
       background: white;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
       border-radius: 10px;
       text-align: left;
+      font-size: 14px;
     }
     .red-bold-title {
-    color: red;
-    font-weight: bold;
-    font-size: 70px; /* Adjust size as needed */
-    text-align: center; /* Center it */
+      color: red;
+      font-weight: bold;
+      font-size: 24px;
+      text-align: center;
     }
   </style>
-
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1K14TPZEJZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-1K14TPZEJZ');
-</script>
 </head>
 <body>
 
@@ -110,7 +102,7 @@
     <p>1️⃣ Copy the YouTube video link.<br>
        2️⃣ Paste it in the input box above.<br>
        3️⃣ Click "Get Thumbnail".<br>
-       4️⃣ Choose a quality and click the corresponding download button. The thumbnail will be directly downloaded to your device.</p>
+       4️⃣ Choose a quality and click the corresponding download button.</p>
   </div>
 
   <!-- SEO Content Section -->
@@ -118,9 +110,8 @@
     <h2>About YouTube Thumbnail Downloader</h2>
     <p>
       YouTube Thumbnail Downloader is a free tool that allows you to download video thumbnails from YouTube in various qualities including Low, Medium, HD, and Full HD/4K. 
-      Thumbnails are an important aspect of video presentation and can help in increasing views and engagement. Our tool makes it easy to obtain high-quality thumbnails instantly with just one click.
+      Thumbnails are an important aspect of video presentation and can help in increasing views and engagement.
     </p>
-    <!-- Additional SEO-friendly content up to 1000+ words should be added here for better ranking. -->
   </div>
 
   <script>
@@ -152,7 +143,6 @@
       return (match && match[2].length === 11) ? match[2] : null;
     }
 
-    // Updated download function using fetch and blob to force download
     function downloadThumbnail(quality) {
       let imageUrl = thumbnails[quality];
       if (!imageUrl) {
@@ -178,30 +168,20 @@
   </script>
 
   <!-- Feedback Section -->
-<div class="feedback-section" style="text-align: center; margin-top: 50px;">
-    <p style="font-size: 18px; margin-bottom: 10px;">Is this tool helpful?</p>
-    <button class="thumbs-up" style="font-size: 30px; margin: 10px; padding: 10px 20px; cursor: pointer; border: none; background-color: #f0f0f0; border-radius: 5px;">👍</button>
-    <button class="thumbs-down" style="font-size: 30px; margin: 10px; padding: 10px 20px; cursor: pointer; border: none; background-color: #f0f0f0; border-radius: 5px;">👎</button>
+<div class="feedback-section" style="text-align: center; margin-top: 30px;">
+    <p style="font-size: 16px; margin-bottom: 10px;">Is this tool helpful?</p>
+    <button class="thumbs-up" style="font-size: 24px; margin: 10px; padding: 10px 15px; cursor: pointer; border: none; background-color: #f0f0f0; border-radius: 5px;">👍</button>
+    <button class="thumbs-down" style="font-size: 24px; margin: 10px; padding: 10px 15px; cursor: pointer; border: none; background-color: #f0f0f0; border-radius: 5px;">👎</button>
 </div>
 
 <script>
-    // JavaScript for handling feedback
     document.querySelector('.thumbs-up').addEventListener('click', function() {
         alert('Thank you for your positive feedback!');
-        // Replace this with your backend call if needed
-        sendFeedback('positive');
     });
 
     document.querySelector('.thumbs-down').addEventListener('click', function() {
         alert('Sorry for the inconvenience, we appreciate your feedback!');
-        // Replace this with your backend call if needed
-        sendFeedback('negative');
     });
-
-    function sendFeedback(feedbackType) {
-        console.log('Feedback received: ' + feedbackType);
-        // You can replace this with an actual API call to save the feedback on your server
-    }
 </script>
 </body>
 </html>
