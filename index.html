@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="google-site-verification" content="nbaWMmQNYwGqgfg65_RvFprGgV8_jr229R3KHsUQ-oU" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>YouTube Thumbnail Downloader - HD, 4K Thumbnails | YTThumbs</title>
   <meta name="description" content="Download YouTube video thumbnails in HD, 4K, and Full HD quality with YTThumbs. Fast, free, and easy one-click download. No watermark!">
   <meta name="keywords" content="YouTube Thumbnail Downloader, HD Thumbnail Download, YouTube Image Extractor, Save YouTube Thumbnail, 4K Thumbnail Downloader">
   
-  <!-- Schema Markup for SEO -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -69,26 +67,6 @@
       width: 100%;
       margin: 5px 0;
     }
-    .blog-section {
-      max-width: 90%;
-      margin: 30px auto;
-      padding: 20px;
-      background: white;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-    }
-    .blog-post {
-      margin-bottom: 20px;
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-    }
-    .blog-post h3 {
-      color: #D32F2F;
-    }
-    .blog-post a {
-      text-decoration: none;
-      color: #007BFF;
-    }
   </style>
 </head>
 <body>
@@ -110,19 +88,6 @@
         <button onclick="downloadThumbnail('high')">Download HD Quality</button>
         <button onclick="downloadThumbnail('maxres')">Download Full HD/4K</button>
       </div>
-    </div>
-  </div>
-
-  <!-- Blog Section -->
-  <div class="blog-section">
-    <h2>Latest Blog Posts</h2>
-    <div class="blog-post">
-      <h3><a href="#">How to Download YouTube Thumbnails?</a></h3>
-      <p>Learn the easiest ways to download YouTube thumbnails in HD and 4K quality.</p>
-    </div>
-    <div class="blog-post">
-      <h3><a href="#">Why YouTube Thumbnails Matter?</a></h3>
-      <p>Discover how thumbnails impact video views and engagement.</p>
     </div>
   </div>
 
@@ -162,12 +127,20 @@
         return;
       }
       
-      let a = document.createElement("a");
-      a.href = imageUrl;
-      a.download = `${quality}_quality_thumbnail.jpg`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      fetch(imageUrl)
+        .then(response => response.blob())
+        .then(blob => {
+          let blobUrl = URL.createObjectURL(blob);
+          let a = document.createElement("a");
+          a.style.display = "none";
+          a.href = blobUrl;
+          a.download = `${quality}_quality_thumbnail.jpg`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(blobUrl);
+        })
+        .catch(() => alert("Failed to download thumbnail."));
     }
   </script>
 
