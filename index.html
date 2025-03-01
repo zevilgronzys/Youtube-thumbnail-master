@@ -79,6 +79,27 @@
       text-align: left;
       font-size: 14px;
     }
+    /* Blog Section */
+    .blog-section {
+      max-width: 90%;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    .blog-post {
+      margin-bottom: 20px;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .blog-post h3 {
+      color: #D32F2F;
+    }
+    .blog-post a {
+      text-decoration: none;
+      color: #007BFF;
+    }
   </style>
 </head>
 <body>
@@ -103,22 +124,17 @@
     </div>
   </div>
 
-  <!-- Tutorial Section -->
-  <div class="tutorial">
-    <h2>How to Download YouTube Thumbnails?</h2>
-    <p>1️⃣ Copy the YouTube video link.<br>
-       2️⃣ Paste it in the input box above.<br>
-       3️⃣ Click "Get Thumbnail".<br>
-       4️⃣ Choose a quality and click the corresponding download button.</p>
-  </div>
-
-  <!-- SEO Content Section -->
-  <div class="seo-content">
-    <h2>About YouTube Thumbnail Downloader</h2>
-    <p>
-      YTThumbs is a free tool that allows you to download video thumbnails from YouTube in various qualities including Low, Medium, HD, and Full HD/4K. 
-      Thumbnails help improve video presentation and engagement.
-    </p>
+  <!-- Blog Section -->
+  <div class="blog-section">
+    <h2>Latest Blog Posts</h2>
+    <div class="blog-post">
+      <h3><a href="#">How to Download YouTube Thumbnails?</a></h3>
+      <p>Learn the easiest ways to download YouTube thumbnails in HD and 4K quality.</p>
+    </div>
+    <div class="blog-post">
+      <h3><a href="#">Why YouTube Thumbnails Matter?</a></h3>
+      <p>Discover how thumbnails impact video views and engagement.</p>
+    </div>
   </div>
 
   <script>
@@ -157,20 +173,10 @@
         return;
       }
       
-      fetch(imageUrl)
-        .then(response => response.blob())
-        .then(blob => {
-          let blobUrl = window.URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.style.display = "none";
-          a.href = blobUrl;
-          a.download = `${quality}_quality_thumbnail.jpg`;
-          document.body.appendChild(a);
-          a.click();
-          window.URL.revokeObjectURL(blobUrl);
-          document.body.removeChild(a);
-        })
-        .catch(() => alert("Failed to download thumbnail."));
+      let a = document.createElement("a");
+      a.href = imageUrl;
+      a.download = `${quality}_quality_thumbnail.jpg`;
+      a.click();
     }
   </script>
 
